@@ -12,6 +12,7 @@ public class Boookmyshowmay23Application {
 //        BaseModel bm = new BaseModel();
 //        bm.
         SpringApplication.run(Boookmyshowmay23Application.class, args);
+        System.out.println("Hi");
     }
 
 }

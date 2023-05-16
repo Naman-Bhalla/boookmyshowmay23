@@ -9,7 +9,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "shows")
 public class Show extends BaseModel {
     @ManyToOne
     private Movie movie;
