@@ -2,6 +2,8 @@ package com.scaler.boookmyshowmay23.controllers;
 
 import com.scaler.boookmyshowmay23.dtos.BookMovieRequestDto;
 import com.scaler.boookmyshowmay23.dtos.BookMovieResponseDto;
+import com.scaler.boookmyshowmay23.dtos.ResponseStatus;
+import com.scaler.boookmyshowmay23.models.Booking;
 import com.scaler.boookmyshowmay23.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +20,24 @@ public class BookingController {
     }
 
     public BookMovieResponseDto bookMovie(BookMovieRequestDto request) {
+        BookMovieResponseDto response = new BookMovieResponseDto();
 
-        return null;
+        Booking booking;
+
+        try {
+            booking = bookingService.bookMovie(
+                    request.getUserId(),
+                    request.getShowSeatIds(),
+                    request.getShowId()
+            );
+
+            response.setResponseStatus(ResponseStatus.SUCCESS);
+            response.setBookingId(booking.getId());
+            response.setAmount(booking.getAmount());
+        } catch (Exception e) {
+            response.setResponseStatus(ResponseStatus.FAILURE);
+        }
+
+        return response;
     }
 }
